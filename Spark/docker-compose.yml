@@ -1,0 +1,40 @@
+x-spark-common: &spark-common
+  image: bitnami/spark:3.5
+  env_file:
+    - .env
+  networks:
+    - spark-network
+
+services:
+  spark-master:
+    <<: *spark-common
+    hostname: spark-master
+    environment:
+      SPARK_MODE: master
+      SPARK_MASTER_HOST: ${SPARK_MASTER_HOST}
+      SPARK_MASTER_PORT: ${SPARK_MASTER_PORT}
+      SPARK_MASTER_WEBUI_PORT: ${SPARK_MASTER_WEBUI_PORT}
+    ports:
+      - "7077:7077"
+      - "8090:8090"
+    restart: unless-stopped
+
+  spark-worker-1:
+    <<: *spark-common
+    hostname: spark-worker-1
+    environment:
+      SPARK_MODE: worker
+      SPARK_MASTER_URL: spark://spark-master:7077
+      SPARK_WORKER_CORES: ${SPARK_WORKER_CORES}
+      SPARK_WORKER_MEMORY: ${SPARK_WORKER_MEMORY}
+      SPARK_WORKER_PORT: ${SPARK_WORKER_PORT}
+      SPARK_WORKER_WEBUI_PORT: ${SPARK_WORKER_WEBUI_PORT}
+    ports:
+      - "8091:8091"
+    depends_on:
+      - spark-master
+    restart: unless-stopped
+
+networks:
+  spark-network:
+    driver: bridge
