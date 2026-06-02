@@ -1,0 +1,93 @@
+global:
+  scrape_interval:     15s
+  evaluation_interval: 15s
+  scrape_timeout:      10s
+
+scrape_configs:
+
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+        labels:
+          instance: 'SRV-MONITORING'
+          env: 'data_nebula'
+
+  - job_name: 'srv-proxy'
+    static_configs:
+      - targets: ['10.0.2.233:9100']   # IP real del proxy
+        labels:
+          instance: 'SRV-PROXY'
+          role: 'proxy'
+          env: 'data_nebula'
+
+  - job_name: 'srv-master'
+    static_configs:
+      - targets: ['10.0.2.54:9100']
+        labels:
+          instance: 'SRV-MASTER'
+          role: 'airflow-master'
+          env: 'data_nebula'
+
+  - job_name: 'srv-rabbit'
+    static_configs:
+      - targets: ['10.0.2.61:9100']
+        labels:
+          instance: 'SRV-RABBIT'
+          role: 'message-broker'
+          env: 'data_nebula'
+
+  - job_name: 'srv-spark'
+    static_configs:
+      - targets: ['10.0.2.103:9100']
+        labels:
+          instance: 'SRV-SPARK'
+          role: 'spark-backup'
+          env: 'data_nebula'
+
+  - job_name: 'srv-worker1'
+    static_configs:
+      - targets: ['10.0.2.240:9100']
+        labels:
+          instance: 'SRV-WORKER1'
+          role: 'celery-worker'
+          env: 'data_nebula'
+
+  - job_name: 'srv-worker2'
+    static_configs:
+      - targets: ['10.0.2.95:9100']
+        labels:
+          instance: 'SRV-WORKER2'
+          role: 'celery-worker'
+          env: 'data_nebula'
+
+  - job_name: 'srv-worker3'
+    static_configs:
+      - targets: ['10.0.2.79:9100']
+        labels:
+          instance: 'SRV-WORKER3'
+          role: 'celery-worker'
+          env: 'data_nebula'
+
+  - job_name: 'srv-analytics'
+    static_configs:
+      - targets: ['10.0.2.10:9100']
+        labels:
+          instance: 'SRV-ANALYTICS'
+          role: 'analytics-db'
+          env: 'data_nebula'
+
+  - job_name: 'srv-kafka'
+    static_configs:
+      - targets: ['10.0.2.234:9100']
+        labels:
+          instance: 'SRV-KAFKA'
+          role: 'message-broker'
+          env: 'data_nebula'
+
+  - job_name: 'srv-monitoring'
+    static_configs:
+      - targets: ['10.0.2.5:9100']
+        labels:
+          instance: 'SRV-MONITORING'
+          role: 'monitoring'
+          env: 'data_nebula'
