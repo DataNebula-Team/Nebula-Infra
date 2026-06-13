@@ -1,0 +1,24 @@
+services:
+  spark-worker:
+    image: apache/spark:3.5.1
+    container_name: venus-spark-worker
+    user: root
+    network_mode: host
+    
+    command: >
+      /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker
+      --host 26.0.2.42
+      --webui-port 8083
+      --memory 1500M
+      --cores 2
+      spark://25.0.2.90:7077
+      
+    environment:
+      - SPARK_NO_DAEMONIZE=true
+      - SPARK_LOCAL_IP=26.0.2.42
+      - SPARK_PUBLIC_DNS=26.0.2.42
+      - SPARK_LOCAL_HOSTNAME=sirius-spark-worker-1
+    volumes:
+      - /home/ubuntu/spark-apps:/opt/spark-apps
+      
+    restart: unless-stopped

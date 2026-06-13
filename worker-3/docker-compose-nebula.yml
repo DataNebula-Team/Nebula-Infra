@@ -1,0 +1,60 @@
+x-airflow-common: &airflow-common
+  build:
+    context: ..
+    dockerfile: Dockerfile
+
+  env_file:
+    - ./.env
+
+  volumes:
+    # Airflow
+    - airflow_logs:/opt/airflow/logs
+    - airflow_config:/opt/airflow/config
+    - airflow_plugins:/opt/airflow/plugins
+    # DAGs
+    - ../pipelines/dags:/opt/airflow/dags
+
+    # Data pipeline
+    - ../pipelines/data:/opt/airflow/data
+
+    # Logs del proyecto
+    - ../pipelines/logs:/opt/pipelines/logs
+
+    # Proyecto completo
+    - ../pipelines:/opt/pipelines
+  user: "${AIRFLOW_UID:-50000}:0"
+services:
+  airflow-worker:
+    <<: *airflow-common
+    hostname: ${CELERY_HOSTNAME}
+    command: airflow celery worker --autoscale 4,1 -H ${CELERY_HOSTNAME} -q ${QUEUES}
+    environment:
+      DUMB_INIT_SETSID: "0"
+      PYTHONPATH: ${PYTHONPATH}
+      _PIP_ADDITIONAL_REQUIREMENTS: "apache-airflow-providers-amazon"
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - "CMD-SHELL"
+        - "airflow jobs check --job-type WorkerJob --hostname \"$${HOSTNAME}\""
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+  spark-worker:
+    image: apache/spark:3.5.3
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://10.0.2.103:7077
+    environment:
+      SPARK_LOCAL_IP: 0.0.0.0
+      SPARK_WORKER_CORES: 1
+      SPARK_WORKER_MEMORY: 1g
+      SPARK_WORKER_PORT: 7000
+      SPARK_WORKER_WEBUI_PORT: 8091
+    ports:
+      - "8091:8091"
+    restart: unless-stopped
+
+volumes:
+  airflow_logs:
+  airflow_config:
+  airflow_plugins:
