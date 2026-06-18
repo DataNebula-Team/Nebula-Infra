@@ -1,0 +1,120 @@
+<svg width="100%" viewBox="0 0 680 430" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Dependencias entre variables de entorno — NEBULA</title>
+<desc>Mapa de qué variables del .env deben actualizarse cuando cambia la IP o credenciales de cada servidor.</desc>
+<style>
+  text { font-family: system-ui, sans-serif; }
+  .th  { font-size: 13px; font-weight: 500; }
+  .ts  { font-size: 11px; font-weight: 400; }
+  .tm  { font-size: 10px; font-family: monospace; }
+  .lbl { font-size: 10px; font-weight: 500; }
+</style>
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#D3D1C7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- ═══════════════════════════════════════════
+     Título
+════════════════════════════════════════════ -->
+<text class="th" fill="#444441" x="340" y="22" text-anchor="middle" dominant-baseline="central">Si cambia una IP → actualizar todas las variables conectadas</text>
+
+<!-- ═══════════════════════════════════════════
+     COLUMNA IZQUIERDA — SRV-MASTER
+════════════════════════════════════════════ -->
+
+<!-- Servidor -->
+<rect x="40" y="36" width="286" height="50" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.2"/>
+<text class="th" fill="#3C3489" x="183" y="54" text-anchor="middle" dominant-baseline="central">SRV-MASTER cambia IP</text>
+<text class="tm" fill="#534AB7" x="183" y="74" text-anchor="middle" dominant-baseline="central">actualmente: 10.0.2.54</text>
+
+<!-- Línea espina vertical desde MASTER hacia abajo -->
+<line x1="80" y1="86" x2="80" y2="278" stroke="#AFA9EC" stroke-width="1"/>
+
+<!-- Tick + Variable 1: POSTGRES_HOST -->
+<line x1="80" y1="104" x2="96" y2="104" stroke="#AFA9EC" stroke-width="1" marker-end="url(#arr)"/>
+<rect x="96" y="86" width="220" height="36" rx="5" fill="#F8F7FE" stroke="#AFA9EC" stroke-width="0.5"/>
+<text class="tm" fill="#534AB7" x="206" y="100" text-anchor="middle" dominant-baseline="central">POSTGRES_HOST</text>
+<text class="ts" fill="#5F5E5A" x="206" y="115" text-anchor="middle" dominant-baseline="central">= 10.0.2.54</text>
+
+<!-- Tick + Variable 2: SQL_ALCHEMY_CONN -->
+<line x1="80" y1="146" x2="96" y2="146" stroke="#AFA9EC" stroke-width="1" marker-end="url(#arr)"/>
+<rect x="96" y="128" width="220" height="36" rx="5" fill="#F8F7FE" stroke="#AFA9EC" stroke-width="0.5"/>
+<text class="tm" fill="#534AB7" x="206" y="142" text-anchor="middle" dominant-baseline="central">AIRFLOW__DATABASE__SQL_ALCHEMY_CONN</text>
+<text class="ts" fill="#5F5E5A" x="206" y="157" text-anchor="middle" dominant-baseline="central">contiene @10.0.2.54:5432</text>
+
+<!-- Tick + Variable 3: RESULT_BACKEND -->
+<line x1="80" y1="188" x2="96" y2="188" stroke="#AFA9EC" stroke-width="1" marker-end="url(#arr)"/>
+<rect x="96" y="170" width="220" height="36" rx="5" fill="#F8F7FE" stroke="#AFA9EC" stroke-width="0.5"/>
+<text class="tm" fill="#534AB7" x="206" y="184" text-anchor="middle" dominant-baseline="central">AIRFLOW__CELERY__RESULT_BACKEND</text>
+<text class="ts" fill="#5F5E5A" x="206" y="199" text-anchor="middle" dominant-baseline="central">contiene @10.0.2.54:5432</text>
+
+<!-- Tick + Variable 4: SPARK_DRIVER_HOST -->
+<line x1="80" y1="230" x2="96" y2="230" stroke="#AFA9EC" stroke-width="1" marker-end="url(#arr)"/>
+<rect x="96" y="212" width="220" height="36" rx="5" fill="#F8F7FE" stroke="#AFA9EC" stroke-width="0.5"/>
+<text class="tm" fill="#534AB7" x="206" y="226" text-anchor="middle" dominant-baseline="central">SPARK_DRIVER_HOST</text>
+<text class="ts" fill="#5F5E5A" x="206" y="241" text-anchor="middle" dominant-baseline="central">= 10.0.2.54</text>
+
+<!-- ═══════════════════════════════════════════
+     COLUMNA CENTRAL — SRV-RABBIT
+════════════════════════════════════════════ -->
+
+<!-- Servidor -->
+<rect x="346" y="36" width="140" height="50" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="1.2"/>
+<text class="th" fill="#712B13" x="416" y="54" text-anchor="middle" dominant-baseline="central">SRV-RABBIT</text>
+<text class="tm" fill="#993C1D" x="416" y="74" text-anchor="middle" dominant-baseline="central">10.0.2.61</text>
+
+<!-- Línea espina -->
+<line x1="370" y1="86" x2="370" y2="138" stroke="#F5C4B3" stroke-width="1"/>
+
+<!-- Tick + Variable: BROKER_URL -->
+<line x1="370" y1="104" x2="386" y2="104" stroke="#F5C4B3" stroke-width="1" marker-end="url(#arr)"/>
+<rect x="346" y="86" width="140" height="52" rx="5" fill="#FFF8F5" stroke="#F5C4B3" stroke-width="0.5"/>
+<text class="tm" fill="#993C1D" x="416" y="103" text-anchor="middle" dominant-baseline="central">BROKER_URL</text>
+<text class="ts" fill="#5F5E5A" x="416" y="118" text-anchor="middle" dominant-baseline="central">contiene</text>
+<text class="ts" fill="#5F5E5A" x="416" y="130" text-anchor="middle" dominant-baseline="central">@10.0.2.61:5672</text>
+
+<!-- ═══════════════════════════════════════════
+     COLUMNA DERECHA — SRV-SPARK
+════════════════════════════════════════════ -->
+
+<!-- Servidor -->
+<rect x="506" y="36" width="134" height="50" rx="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="1.2"/>
+<text class="th" fill="#633806" x="573" y="54" text-anchor="middle" dominant-baseline="central">SRV-SPARK</text>
+<text class="tm" fill="#854F0B" x="573" y="74" text-anchor="middle" dominant-baseline="central">10.0.2.103</text>
+
+<!-- Línea espina -->
+<line x1="530" y1="86" x2="530" y2="138" stroke="#FAC775" stroke-width="1"/>
+
+<!-- Tick + Variable: SPARK_MASTER_HOST -->
+<line x1="530" y1="104" x2="546" y2="104" stroke="#FAC775" stroke-width="1" marker-end="url(#arr)"/>
+<rect x="506" y="86" width="134" height="52" rx="5" fill="#FFFBF0" stroke="#FAC775" stroke-width="0.5"/>
+<text class="tm" fill="#854F0B" x="573" y="103" text-anchor="middle" dominant-baseline="central">SPARK_MASTER_HOST</text>
+<text class="ts" fill="#5F5E5A" x="573" y="118" text-anchor="middle" dominant-baseline="central">= 10.0.2.103</text>
+<text class="ts" fill="#5F5E5A" x="573" y="130" text-anchor="middle" dominant-baseline="central">(en todos los .env)</text>
+
+<!-- ═══════════════════════════════════════════
+     SECCIÓN CREDENCIALES
+════════════════════════════════════════════ -->
+<line x1="40" y1="268" x2="640" y2="268" stroke="#D3D1C7" stroke-width="0.5"/>
+<text class="th" fill="#444441" x="340" y="284" text-anchor="middle" dominant-baseline="central">Si cambian credenciales</text>
+
+<!-- PostgreSQL -->
+<rect x="40" y="298" width="290" height="56" rx="6" fill="#FDFCFF" stroke="#AFA9EC" stroke-width="0.5"/>
+<text class="lbl" fill="#3C3489" x="56" y="314" dominant-baseline="central">Credenciales PostgreSQL</text>
+<text class="tm" fill="#534AB7" x="56" y="330" dominant-baseline="central">POSTGRES_USER / POSTGRES_PASSWORD</text>
+<text class="ts" fill="#5F5E5A" x="56" y="346" dominant-baseline="central">Actualizar: SQL_ALCHEMY_CONN + RESULT_BACKEND</text>
+
+<!-- RabbitMQ -->
+<rect x="350" y="298" width="290" height="56" rx="6" fill="#FFF8F5" stroke="#F5C4B3" stroke-width="0.5"/>
+<text class="lbl" fill="#712B13" x="366" y="314" dominant-baseline="central">Credenciales RabbitMQ</text>
+<text class="tm" fill="#993C1D" x="366" y="330" dominant-baseline="central">RABBITMQ_DEFAULT_USER / PASS</text>
+<text class="ts" fill="#5F5E5A" x="366" y="346" dominant-baseline="central">Actualizar: BROKER_URL</text>
+
+<!-- Nota final -->
+<rect x="40" y="368" width="600" height="22" rx="4" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5"/>
+<text class="tm" fill="#5F5E5A" x="340" y="379" text-anchor="middle" dominant-baseline="central">Todos los cambios aplican en Master y en los 3 Workers — el .env es compartido</text>
+
+<!-- Nota SQL_ALCHEMY_CONN texto largo -->
+<text class="ts" fill="#888780" x="340" y="406" text-anchor="middle" dominant-baseline="central">* Los nombres de variables están abreviados para mayor legibilidad</text>
+</svg>

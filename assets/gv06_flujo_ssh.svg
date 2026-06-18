@@ -1,0 +1,120 @@
+<svg width="100%" viewBox="0 0 680 440" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Flujo de acceso SSH con bastión — NEBULA</title>
+<desc>El recorrido de una conexión SSH desde el equipo del desarrollador, a través de SRV-PROXY como bastión, hasta cada servidor privado del clúster.</desc>
+<style>
+  text { font-family: system-ui, sans-serif; }
+  .th  { font-size: 13px; font-weight: 500; }
+  .ts  { font-size: 11px; font-weight: 400; }
+  .tm  { font-size: 10px; font-family: monospace; }
+  .cmd { font-size: 10px; font-family: monospace; font-weight: 500; }
+</style>
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arrb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <marker id="arrg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#3B6D11" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- ── Paso 1: Tu computador ── -->
+<rect x="190" y="20" width="300" height="50" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.8"/>
+<text class="th" fill="#444441" x="340" y="38" text-anchor="middle" dominant-baseline="central">Tu computador</text>
+<text class="ts" fill="#888780" x="340" y="57" text-anchor="middle" dominant-baseline="central">Termius / terminal SSH</text>
+
+<!-- flecha + key label -->
+<line x1="340" y1="70" x2="340" y2="100" stroke="#185FA5" stroke-width="1" marker-end="url(#arrb)"/>
+<rect x="356" y="76" width="146" height="18" rx="3" fill="#E6F1FB" stroke="#B5D4F4" stroke-width="0.5"/>
+<text class="cmd" fill="#0C447C" x="429" y="85" text-anchor="middle" dominant-baseline="central">KEY-PROXY.pem · :22</text>
+
+<!-- Badge internet -->
+<rect x="212" y="78" width="76" height="16" rx="3" fill="#F1EFE8" stroke="#D3D1C7" stroke-width="0.5"/>
+<text class="tm" fill="#888780" x="250" y="86" text-anchor="middle" dominant-baseline="central">internet</text>
+
+<!-- ── Paso 2: SRV-PROXY (bastión) ── -->
+<rect x="100" y="100" width="480" height="60" rx="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.2"/>
+<text class="th" fill="#0C447C" x="340" y="120" text-anchor="middle" dominant-baseline="central">SRV-PROXY — bastión SSH</text>
+<text class="ts" fill="#185FA5" x="340" y="138" text-anchor="middle" dominant-baseline="central">10.0.1.233 · ~/.ssh/config con ProxyJump configurado</text>
+<text class="cmd" fill="#0C447C" x="340" y="153" text-anchor="middle" dominant-baseline="central">ssh master · ssh rabbit · ssh spark · ssh worker1/2/3</text>
+
+<!-- Divisor subnet privada -->
+<line x1="40" y1="184" x2="640" y2="184" stroke="#3B6D11" stroke-width="0.6" stroke-dasharray="6 3"/>
+<rect x="40" y="176" width="112" height="16" rx="3" fill="#EAF3DE"/>
+<text class="tm" fill="#3B6D11" x="96" y="184" text-anchor="middle" dominant-baseline="central">Subnet privada</text>
+
+<!-- ── Paso 3: Flechas verticales a cada servidor ── -->
+<!-- Línea horizontal de distribución -->
+<line x1="160" y1="196" x2="160" y2="220" stroke="#3B6D11" stroke-width="1" marker-end="url(#arrg)"/>
+<line x1="260" y1="196" x2="260" y2="220" stroke="#3B6D11" stroke-width="1" marker-end="url(#arrg)"/>
+<line x1="360" y1="196" x2="360" y2="220" stroke="#3B6D11" stroke-width="1" marker-end="url(#arrg)"/>
+<line x1="460" y1="196" x2="460" y2="220" stroke="#3B6D11" stroke-width="1" marker-end="url(#arrg)"/>
+<line x1="560" y1="196" x2="560" y2="220" stroke="#3B6D11" stroke-width="1" marker-end="url(#arrg)"/>
+
+<!-- ── Servidores privados ── -->
+
+<!-- SRV-MASTER -->
+<rect x="100" y="220" width="120" height="50" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.8"/>
+<text class="th" fill="#3C3489" x="160" y="238" text-anchor="middle" dominant-baseline="central">SRV-MASTER</text>
+<text class="tm" fill="#534AB7" x="160" y="254" text-anchor="middle" dominant-baseline="central">10.0.2.54</text>
+<text class="cmd" fill="#3B6D11" x="160" y="264" text-anchor="middle" dominant-baseline="central">ssh master</text>
+
+<!-- SRV-RABBIT -->
+<rect x="200" y="220" width="120" height="50" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.8"/>
+<text class="th" fill="#712B13" x="260" y="238" text-anchor="middle" dominant-baseline="central">SRV-RABBIT</text>
+<text class="tm" fill="#993C1D" x="260" y="254" text-anchor="middle" dominant-baseline="central">10.0.2.61</text>
+<text class="cmd" fill="#3B6D11" x="260" y="264" text-anchor="middle" dominant-baseline="central">ssh rabbit</text>
+
+<!-- SRV-SPARK -->
+<rect x="300" y="220" width="120" height="50" rx="6" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.8"/>
+<text class="th" fill="#633806" x="360" y="238" text-anchor="middle" dominant-baseline="central">SRV-SPARK</text>
+<text class="tm" fill="#854F0B" x="360" y="254" text-anchor="middle" dominant-baseline="central">10.0.2.103</text>
+<text class="cmd" fill="#3B6D11" x="360" y="264" text-anchor="middle" dominant-baseline="central">ssh spark</text>
+
+<!-- SRV-WORKER1 -->
+<rect x="400" y="220" width="120" height="50" rx="6" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+<text class="th" fill="#085041" x="460" y="238" text-anchor="middle" dominant-baseline="central">SRV-WORKER1</text>
+<text class="tm" fill="#0F6E56" x="460" y="254" text-anchor="middle" dominant-baseline="central">10.0.2.240</text>
+<text class="cmd" fill="#3B6D11" x="460" y="264" text-anchor="middle" dominant-baseline="central">ssh worker1</text>
+
+<!-- SRV-WORKER2/3 (agrupados) -->
+<rect x="500" y="220" width="120" height="50" rx="6" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.8"/>
+<text class="th" fill="#085041" x="560" y="235" text-anchor="middle" dominant-baseline="central">SRV-WORKER</text>
+<text class="th" fill="#085041" x="560" y="249" text-anchor="middle" dominant-baseline="central">2 / 3</text>
+<text class="tm" fill="#0F6E56" x="560" y="262" text-anchor="middle" dominant-baseline="central">.95 · .79</text>
+
+<!-- Keys badge por grupo -->
+<rect x="100" y="282" width="220" height="18" rx="3" fill="#EAF3DE" stroke="#9FE1CB" stroke-width="0.5"/>
+<text class="tm" fill="#27500A" x="210" y="291" text-anchor="middle" dominant-baseline="central">KEY-MASTER-NEBULA-2 · KEY-RABBIT · KEY-SPARK</text>
+
+<rect x="400" y="282" width="220" height="18" rx="3" fill="#EAF3DE" stroke="#9FE1CB" stroke-width="0.5"/>
+<text class="tm" fill="#27500A" x="510" y="291" text-anchor="middle" dominant-baseline="central">KEY-WORKERS.pem (los tres Workers)</text>
+
+<!-- ── Configuración ~/.ssh/config ── -->
+<rect x="40" y="318" width="600" height="102" rx="8" fill="#1E1E1E"/>
+<text class="tm" fill="#888780" x="56" y="336" dominant-baseline="central"># ~/.ssh/config en SRV-PROXY</text>
+
+<text class="tm" fill="#569CD6" x="56" y="354" dominant-baseline="central">Host</text>
+<text class="tm" fill="#9CDCFE" x="96" y="354" dominant-baseline="central">master</text>
+<text class="tm" fill="#569CD6" x="200" y="354" dominant-baseline="central">HostName</text>
+<text class="tm" fill="#CE9178" x="272" y="354" dominant-baseline="central">10.0.2.54</text>
+<text class="tm" fill="#569CD6" x="360" y="354" dominant-baseline="central">ProxyJump</text>
+<text class="tm" fill="#CE9178" x="432" y="354" dominant-baseline="central">proxy</text>
+<text class="tm" fill="#569CD6" x="480" y="354" dominant-baseline="central">IdentityFile</text>
+<text class="tm" fill="#CE9178" x="556" y="354" dominant-baseline="central">~/.ssh/KEY-MASTER...</text>
+
+<text class="tm" fill="#569CD6" x="56" y="374" dominant-baseline="central">Host</text>
+<text class="tm" fill="#9CDCFE" x="96" y="374" dominant-baseline="central">worker1</text>
+<text class="tm" fill="#569CD6" x="200" y="374" dominant-baseline="central">HostName</text>
+<text class="tm" fill="#CE9178" x="272" y="374" dominant-baseline="central">10.0.2.240</text>
+<text class="tm" fill="#569CD6" x="360" y="374" dominant-baseline="central">ProxyJump</text>
+<text class="tm" fill="#CE9178" x="432" y="374" dominant-baseline="central">proxy</text>
+<text class="tm" fill="#569CD6" x="480" y="374" dominant-baseline="central">IdentityFile</text>
+<text class="tm" fill="#CE9178" x="556" y="374" dominant-baseline="central">~/.ssh/KEY-WORKERS.pem</text>
+
+<text class="tm" fill="#6A9955" x="56" y="394" dominant-baseline="central"># mismo patrón para rabbit · spark · worker2 · worker3</text>
+
+<text class="tm" fill="#888780" x="56" y="412" dominant-baseline="central">$ ssh master        # conecta directo a SRV-MASTER saltando por SRV-PROXY</text>
+</svg>
