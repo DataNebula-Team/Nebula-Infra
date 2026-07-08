@@ -1,0 +1,124 @@
+<svg width="100%" viewBox="0 0 680 500" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Resumen del clúster NEBULA — instancias, IPs y roles</title>
+<desc>Tabla de las 7 instancias EC2 del clúster con sus IPs, tipos de instancia, subnets y roles principales.</desc>
+<style>
+  text { font-family: system-ui, sans-serif; }
+  .th  { font-size: 13px; font-weight: 500; }
+  .ts  { font-size: 11px; font-weight: 400; }
+  .tm  { font-size: 11px; font-family: monospace; }
+</style>
+
+<!-- ── Cabecera de tabla ── -->
+<rect x="40" y="20" width="600" height="34" rx="6" fill="#2C2C2A"/>
+<text class="th" fill="#F1EFE8" x="78"  y="37" dominant-baseline="central">Instancia</text>
+<text class="th" fill="#F1EFE8" x="232" y="37" dominant-baseline="central">IP privada</text>
+<text class="th" fill="#F1EFE8" x="352" y="37" dominant-baseline="central">Tipo</text>
+<text class="th" fill="#F1EFE8" x="430" y="37" dominant-baseline="central">Subnet</text>
+<text class="th" fill="#F1EFE8" x="524" y="37" dominant-baseline="central">Rol</text>
+
+<!-- ── Separador Subnet pública ── -->
+<rect x="40" y="54" width="600" height="22" rx="0" fill="#E6F1FB"/>
+<text class="ts" fill="#185FA5" x="56" y="65" dominant-baseline="central" font-weight="500">SUBNET PÚBLICA — 10.0.1.0/24</text>
+
+<!-- SRV-PROXY -->
+<rect x="40" y="76" width="600" height="54" rx="0" fill="#ffffff" stroke="#B5D4F4" stroke-width="0.5"/>
+<rect x="40" y="76" width="5"   height="54" fill="#185FA5"/>
+<text class="th" fill="#0C447C"  x="78"  y="96"  dominant-baseline="central">SRV-PROXY</text>
+<text class="tm" fill="#5F5E5A"  x="78"  y="115" dominant-baseline="central">i-09723233f5feff5c7</text>
+<text class="tm" fill="#2C2C2A"  x="232" y="96"  dominant-baseline="central">10.0.1.233</text>
+<text class="ts" fill="#5F5E5A"  x="232" y="115" dominant-baseline="central">EIP: 34.225.146.184</text>
+<text class="ts" fill="#2C2C2A"  x="352" y="103" dominant-baseline="central">t3.micro</text>
+<text class="ts" fill="#2C2C2A"  x="430" y="103" dominant-baseline="central">Pública</text>
+<text class="ts" fill="#2C2C2A"  x="524" y="96"  dominant-baseline="central">Nginx Proxy Manager</text>
+<text class="ts" fill="#5F5E5A"  x="524" y="115" dominant-baseline="central">Bastión SSH</text>
+
+<!-- ── Separador Subnet privada ── -->
+<rect x="40" y="130" width="600" height="22" rx="0" fill="#EAF3DE"/>
+<text class="ts" fill="#3B6D11" x="56" y="141" dominant-baseline="central" font-weight="500">SUBNET PRIVADA — 10.0.2.0/24</text>
+
+<!-- SRV-MASTER -->
+<rect x="40" y="152" width="600" height="54" rx="0" fill="#FDFCFF" stroke="#AFA9EC" stroke-width="0.5"/>
+<rect x="40" y="152" width="5"   height="54" fill="#534AB7"/>
+<text class="th" fill="#3C3489" x="78"  y="172" dominant-baseline="central">SRV-MASTER</text>
+<text class="tm" fill="#5F5E5A" x="78"  y="191" dominant-baseline="central">i-0de892b2bc2ad133a</text>
+<text class="tm" fill="#2C2C2A" x="232" y="172" dominant-baseline="central">10.0.2.54</text>
+<text class="ts" fill="#5F5E5A" x="232" y="191" dominant-baseline="central">KEY-MASTER-NEBULA-2</text>
+<text class="ts" fill="#2C2C2A" x="352" y="179" dominant-baseline="central">t3.small</text>
+<text class="ts" fill="#2C2C2A" x="430" y="179" dominant-baseline="central">Privada</text>
+<text class="ts" fill="#2C2C2A" x="524" y="172" dominant-baseline="central">Airflow · Flower</text>
+<text class="ts" fill="#5F5E5A" x="524" y="191" dominant-baseline="central">Scheduler · PostgreSQL</text>
+
+<!-- SRV-RABBIT -->
+<rect x="40" y="206" width="600" height="54" rx="0" fill="#FFFAF8" stroke="#F5C4B3" stroke-width="0.5"/>
+<rect x="40" y="206" width="5"   height="54" fill="#993C1D"/>
+<text class="th" fill="#712B13" x="78"  y="226" dominant-baseline="central">SRV-RABBIT</text>
+<text class="tm" fill="#5F5E5A" x="78"  y="245" dominant-baseline="central">i-031caa19a9b76bf7c</text>
+<text class="tm" fill="#2C2C2A" x="232" y="226" dominant-baseline="central">10.0.2.61</text>
+<text class="ts" fill="#5F5E5A" x="232" y="245" dominant-baseline="central">KEY-RABBIT</text>
+<text class="ts" fill="#2C2C2A" x="352" y="233" dominant-baseline="central">t3.micro</text>
+<text class="ts" fill="#2C2C2A" x="430" y="233" dominant-baseline="central">Privada</text>
+<text class="ts" fill="#2C2C2A" x="524" y="226" dominant-baseline="central">RabbitMQ broker</text>
+<text class="ts" fill="#5F5E5A" x="524" y="245" dominant-baseline="central">AMQP :5672 · UI :15672</text>
+
+<!-- SRV-SPARK -->
+<rect x="40" y="260" width="600" height="54" rx="0" fill="#FFFEF5" stroke="#FAC775" stroke-width="0.5"/>
+<rect x="40" y="260" width="5"   height="54" fill="#854F0B"/>
+<text class="th" fill="#633806" x="78"  y="280" dominant-baseline="central">SRV-SPARK</text>
+<text class="tm" fill="#5F5E5A" x="78"  y="299" dominant-baseline="central">i-0243400bea85517d2</text>
+<text class="tm" fill="#2C2C2A" x="232" y="280" dominant-baseline="central">10.0.2.103</text>
+<text class="ts" fill="#5F5E5A" x="232" y="299" dominant-baseline="central">KEY-SPARK</text>
+<text class="ts" fill="#2C2C2A" x="352" y="287" dominant-baseline="central">t3.small</text>
+<text class="ts" fill="#2C2C2A" x="430" y="287" dominant-baseline="central">Privada</text>
+<text class="ts" fill="#2C2C2A" x="524" y="280" dominant-baseline="central">Spark Master</text>
+<text class="ts" fill="#5F5E5A" x="524" y="299" dominant-baseline="central">API :7077 · UI :8090</text>
+
+<!-- SRV-WORKER1 -->
+<rect x="40" y="314" width="600" height="54" rx="0" fill="#F5FFFB" stroke="#9FE1CB" stroke-width="0.5"/>
+<rect x="40" y="314" width="5"   height="54" fill="#0F6E56"/>
+<text class="th" fill="#085041" x="78"  y="334" dominant-baseline="central">SRV-WORKER1</text>
+<text class="tm" fill="#5F5E5A" x="78"  y="353" dominant-baseline="central">i-0381b79f98764f414</text>
+<text class="tm" fill="#2C2C2A" x="232" y="334" dominant-baseline="central">10.0.2.240</text>
+<text class="ts" fill="#5F5E5A" x="232" y="353" dominant-baseline="central">KEY-WORKERS</text>
+<text class="ts" fill="#2C2C2A" x="352" y="341" dominant-baseline="central">t3.small</text>
+<text class="ts" fill="#2C2C2A" x="430" y="341" dominant-baseline="central">Privada</text>
+<text class="ts" fill="#2C2C2A" x="524" y="334" dominant-baseline="central">Celery Worker</text>
+<text class="ts" fill="#5F5E5A" x="524" y="353" dominant-baseline="central">Spark Worker</text>
+
+<!-- SRV-WORKER2 -->
+<rect x="40" y="368" width="600" height="54" rx="0" fill="#F5FFFB" stroke="#9FE1CB" stroke-width="0.5"/>
+<rect x="40" y="368" width="5"   height="54" fill="#0F6E56"/>
+<text class="th" fill="#085041" x="78"  y="388" dominant-baseline="central">SRV-WORKER2</text>
+<text class="tm" fill="#5F5E5A" x="78"  y="407" dominant-baseline="central">i-07efffcdccd71d98d</text>
+<text class="tm" fill="#2C2C2A" x="232" y="388" dominant-baseline="central">10.0.2.95</text>
+<text class="ts" fill="#5F5E5A" x="232" y="407" dominant-baseline="central">KEY-WORKERS</text>
+<text class="ts" fill="#2C2C2A" x="352" y="395" dominant-baseline="central">t3.small</text>
+<text class="ts" fill="#2C2C2A" x="430" y="395" dominant-baseline="central">Privada</text>
+<text class="ts" fill="#2C2C2A" x="524" y="388" dominant-baseline="central">Celery Worker</text>
+<text class="ts" fill="#5F5E5A" x="524" y="407" dominant-baseline="central">Spark Worker</text>
+
+<!-- SRV-WORKER3 -->
+<rect x="40" y="422" width="600" height="54" rx="0" fill="#F5FFFB" stroke="#9FE1CB" stroke-width="0.5"/>
+<rect x="40" y="422" width="5"   height="54" fill="#0F6E56"/>
+<text class="th" fill="#085041" x="78"  y="442" dominant-baseline="central">SRV-WORKER3</text>
+<text class="tm" fill="#5F5E5A" x="78"  y="461" dominant-baseline="central">i-0d7679c941dc7049f</text>
+<text class="tm" fill="#2C2C2A" x="232" y="442" dominant-baseline="central">10.0.2.79</text>
+<text class="ts" fill="#5F5E5A" x="232" y="461" dominant-baseline="central">KEY-WORKERS</text>
+<text class="ts" fill="#2C2C2A" x="352" y="449" dominant-baseline="central">t3.small</text>
+<text class="ts" fill="#2C2C2A" x="430" y="449" dominant-baseline="central">Privada</text>
+<text class="ts" fill="#2C2C2A" x="524" y="442" dominant-baseline="central">Celery Worker</text>
+<text class="ts" fill="#5F5E5A" x="524" y="461" dominant-baseline="central">Spark Worker</text>
+
+<!-- Borde exterior tabla -->
+<rect x="40" y="152" width="600" height="324" rx="0" fill="none" stroke="#D3D1C7" stroke-width="0.5"/>
+<!-- Líneas separadoras horizontales internas -->
+<line x1="40" y1="206" x2="640" y2="206" stroke="#D3D1C7" stroke-width="0.5"/>
+<line x1="40" y1="260" x2="640" y2="260" stroke="#D3D1C7" stroke-width="0.5"/>
+<line x1="40" y1="314" x2="640" y2="314" stroke="#D3D1C7" stroke-width="0.5"/>
+<line x1="40" y1="368" x2="640" y2="368" stroke="#D3D1C7" stroke-width="0.5"/>
+<line x1="40" y1="422" x2="640" y2="422" stroke="#D3D1C7" stroke-width="0.5"/>
+<!-- Líneas separadoras verticales -->
+<line x1="220" y1="54"  x2="220" y2="476" stroke="#D3D1C7" stroke-width="0.5"/>
+<line x1="340" y1="54"  x2="340" y2="476" stroke="#D3D1C7" stroke-width="0.5"/>
+<line x1="418" y1="54"  x2="418" y2="476" stroke="#D3D1C7" stroke-width="0.5"/>
+<line x1="512" y1="54"  x2="512" y2="476" stroke="#D3D1C7" stroke-width="0.5"/>
+</svg>

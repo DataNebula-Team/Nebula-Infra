@@ -1,0 +1,186 @@
+<svg width="100%" viewBox="0 0 680 660" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Security Groups — NEBULA</title>
+<desc>Cinco tarjetas independientes mostrando las reglas inbound de cada Security Group del clúster.</desc>
+<style>
+  text { font-family: system-ui, sans-serif; }
+  .th  { font-size: 13px; font-weight: 500; }
+  .ts  { font-size: 11px; font-weight: 400; }
+  .tm  { font-size: 10px; font-family: monospace; }
+  .col { font-size: 10px; font-weight: 500; fill: #888780; }
+</style>
+
+<!-- ══════════════════════════════════════
+     SG-PROXY — ancho completo
+═══════════════════════════════════════ -->
+<rect x="40" y="20" width="600" height="178" rx="8" fill="#ffffff" stroke="#185FA5" stroke-width="1"/>
+<rect x="40" y="20" width="600" height="44" rx="8" fill="#185FA5"/>
+<rect x="40" y="44" width="600" height="20" fill="#185FA5"/>
+<text class="th" fill="#ffffff" x="56" y="38" dominant-baseline="central">SG-PROXY</text>
+<text class="tm" fill="#B5D4F4" x="56" y="56" dominant-baseline="central">sg-01f74fc9695abc980 · punto de entrada público</text>
+
+<!-- Col headers SG-PROXY: 3 columnas -->
+<rect x="40" y="64" width="600" height="20" fill="#F1EFE8"/>
+<text class="col" x="56"  y="74" dominant-baseline="central">TIPO · PUERTO</text>
+<text class="col" x="240" y="74" dominant-baseline="central">ORIGEN</text>
+<text class="col" x="430" y="74" dominant-baseline="central">PROPÓSITO</text>
+<line x1="234" y1="64" x2="234" y2="198" stroke="#D3D1C7" stroke-width="0.5"/>
+<line x1="424" y1="64" x2="424" y2="198" stroke="#D3D1C7" stroke-width="0.5"/>
+
+<rect x="40" y="84" width="600" height="22" fill="#F8FBFF"/>
+<text class="tm" fill="#2C2C2A" x="56"  y="95" dominant-baseline="central">HTTP :80</text>
+<text class="tm" fill="#854F0B" x="240" y="95" dominant-baseline="central">0.0.0.0/0</text>
+<text class="ts" fill="#5F5E5A" x="430" y="95" dominant-baseline="central">Tráfico web público</text>
+
+<rect x="40" y="106" width="600" height="22" fill="#ffffff"/>
+<text class="tm" fill="#2C2C2A" x="56"  y="117" dominant-baseline="central">HTTPS :443</text>
+<text class="tm" fill="#854F0B" x="240" y="117" dominant-baseline="central">0.0.0.0/0</text>
+<text class="ts" fill="#5F5E5A" x="430" y="117" dominant-baseline="central">Tráfico web seguro</text>
+
+<rect x="40" y="128" width="600" height="22" fill="#F8FBFF"/>
+<text class="tm" fill="#2C2C2A" x="56"  y="139" dominant-baseline="central">TCP :81</text>
+<text class="tm" fill="#854F0B" x="240" y="139" dominant-baseline="central">0.0.0.0/0</text>
+<text class="ts" fill="#5F5E5A" x="430" y="139" dominant-baseline="central">Admin Nginx Proxy Manager</text>
+
+<rect x="40" y="150" width="600" height="22" fill="#ffffff"/>
+<text class="tm" fill="#2C2C2A" x="56"  y="161" dominant-baseline="central">SSH :22</text>
+<text class="tm" fill="#854F0B" x="240" y="161" dominant-baseline="central">0.0.0.0/0</text>
+<text class="ts" fill="#5F5E5A" x="430" y="161" dominant-baseline="central">Administración remota</text>
+
+<rect x="40" y="172" width="600" height="26" fill="#F8FBFF"/>
+<text class="tm" fill="#2C2C2A" x="56"  y="185" dominant-baseline="central">TCP :3128</text>
+<text class="tm" fill="#444441" x="240" y="185" dominant-baseline="central">10.0.2.0/24</text>
+<text class="ts" fill="#5F5E5A" x="430" y="185" dominant-baseline="central">Puerto proxy subnet privada</text>
+<line x1="40" y1="198" x2="640" y2="198" stroke="#B5D4F4" stroke-width="0.5"/>
+
+
+<!-- ══════════════════════════════════════
+     Fila 2: SG-MASTER | SG-RABBIT
+     Cols internas: TIPO·PUERTO | ORIGEN
+═══════════════════════════════════════ -->
+
+<!-- SG-MASTER -->
+<rect x="40" y="218" width="290" height="176" rx="8" fill="#ffffff" stroke="#534AB7" stroke-width="1"/>
+<rect x="40" y="218" width="290" height="44" rx="8" fill="#534AB7"/>
+<rect x="40" y="240" width="290" height="22" fill="#534AB7"/>
+<text class="th" fill="#ffffff" x="56" y="236" dominant-baseline="central">SG-MASTER</text>
+<text class="tm" fill="#B0ACF0" x="56" y="254" dominant-baseline="central">sg-05c45fb335468a16d</text>
+<rect x="40" y="262" width="290" height="18" fill="#F1EFE8"/>
+<text class="col" x="56"  y="271" dominant-baseline="central">TIPO · PUERTO</text>
+<text class="col" x="168" y="271" dominant-baseline="central">ORIGEN</text>
+<line x1="162" y1="262" x2="162" y2="394" stroke="#D3D1C7" stroke-width="0.5"/>
+
+<rect x="40" y="280" width="290" height="22" fill="#F8FBFF"/>
+<text class="tm" fill="#2C2C2A" x="56"  y="291" dominant-baseline="central">HTTP :8080</text>
+<text class="tm" fill="#185FA5" x="168" y="291" dominant-baseline="central">SG-PROXY</text>
+<rect x="40" y="302" width="290" height="22" fill="#ffffff"/>
+<text class="tm" fill="#2C2C2A" x="56"  y="313" dominant-baseline="central">TCP :5555</text>
+<text class="tm" fill="#185FA5" x="168" y="313" dominant-baseline="central">SG-PROXY</text>
+<rect x="40" y="324" width="290" height="22" fill="#F8FBFF"/>
+<text class="tm" fill="#2C2C2A" x="56"  y="335" dominant-baseline="central">TCP :5432</text>
+<text class="tm" fill="#444441" x="168" y="335" dominant-baseline="central">10.0.2.0/24</text>
+<rect x="40" y="346" width="290" height="22" fill="#ffffff"/>
+<text class="tm" fill="#2C2C2A" x="56"  y="357" dominant-baseline="central">SSH :22</text>
+<text class="tm" fill="#444441" x="168" y="357" dominant-baseline="central">10.0.1.233/32</text>
+
+<!-- Propósito como subtexto en gris -->
+<rect x="40" y="368" width="290" height="26" fill="#FAFAFA"/>
+<text class="ts" fill="#888780" x="56"  y="375" dominant-baseline="central">Airflow UI · Flower · PostgreSQL</text>
+<text class="ts" fill="#888780" x="56"  y="389" dominant-baseline="central">SSH solo desde SRV-PROXY</text>
+<line x1="40" y1="368" x2="330" y2="368" stroke="#AFA9EC" stroke-width="0.5"/>
+
+<!-- SG-RABBIT -->
+<rect x="350" y="218" width="290" height="176" rx="8" fill="#ffffff" stroke="#993C1D" stroke-width="1"/>
+<rect x="350" y="218" width="290" height="44" rx="8" fill="#993C1D"/>
+<rect x="350" y="240" width="290" height="22" fill="#993C1D"/>
+<text class="th" fill="#ffffff" x="366" y="236" dominant-baseline="central">SG-RABBIT</text>
+<text class="tm" fill="#F5C4B3" x="366" y="254" dominant-baseline="central">sg-0912cc86544affa6c</text>
+<rect x="350" y="262" width="290" height="18" fill="#F1EFE8"/>
+<text class="col" x="366" y="271" dominant-baseline="central">TIPO · PUERTO</text>
+<text class="col" x="478" y="271" dominant-baseline="central">ORIGEN</text>
+<line x1="472" y1="262" x2="472" y2="394" stroke="#D3D1C7" stroke-width="0.5"/>
+
+<rect x="350" y="280" width="290" height="22" fill="#F8FBFF"/>
+<text class="tm" fill="#2C2C2A" x="366" y="291" dominant-baseline="central">TCP :15672</text>
+<text class="tm" fill="#185FA5" x="478" y="291" dominant-baseline="central">SG-PROXY</text>
+<rect x="350" y="302" width="290" height="22" fill="#ffffff"/>
+<text class="tm" fill="#2C2C2A" x="366" y="313" dominant-baseline="central">TCP :15672</text>
+<text class="tm" fill="#444441" x="478" y="313" dominant-baseline="central">10.0.2.0/24</text>
+<rect x="350" y="324" width="290" height="22" fill="#F8FBFF"/>
+<text class="tm" fill="#2C2C2A" x="366" y="335" dominant-baseline="central">TCP :5672</text>
+<text class="tm" fill="#444441" x="478" y="335" dominant-baseline="central">10.0.2.0/24</text>
+<rect x="350" y="346" width="290" height="22" fill="#ffffff"/>
+<text class="tm" fill="#2C2C2A" x="366" y="357" dominant-baseline="central">SSH :22</text>
+<text class="tm" fill="#444441" x="478" y="357" dominant-baseline="central">10.0.1.0/24</text>
+
+<rect x="350" y="368" width="290" height="26" fill="#FAFAFA"/>
+<text class="ts" fill="#888780" x="366" y="375" dominant-baseline="central">RabbitMQ UI · AMQP broker</text>
+<text class="ts" fill="#888780" x="366" y="389" dominant-baseline="central">SSH desde subnet pública</text>
+<line x1="350" y1="368" x2="640" y2="368" stroke="#F5C4B3" stroke-width="0.5"/>
+
+
+<!-- ══════════════════════════════════════
+     Fila 3: SG-WORKERS | SG-SPARK
+═══════════════════════════════════════ -->
+
+<!-- SG-WORKERS -->
+<rect x="40" y="414" width="290" height="154" rx="8" fill="#ffffff" stroke="#0F6E56" stroke-width="1"/>
+<rect x="40" y="414" width="290" height="44" rx="8" fill="#0F6E56"/>
+<rect x="40" y="436" width="290" height="22" fill="#0F6E56"/>
+<text class="th" fill="#ffffff" x="56" y="432" dominant-baseline="central">SG-WORKERS</text>
+<text class="tm" fill="#9FE1CB" x="56" y="450" dominant-baseline="central">sg-0916fdb298b781968</text>
+<rect x="40" y="458" width="290" height="18" fill="#F1EFE8"/>
+<text class="col" x="56"  y="467" dominant-baseline="central">TIPO · PUERTO</text>
+<text class="col" x="168" y="467" dominant-baseline="central">ORIGEN</text>
+<line x1="162" y1="458" x2="162" y2="568" stroke="#D3D1C7" stroke-width="0.5"/>
+
+<rect x="40" y="476" width="290" height="22" fill="#F8FBFF"/>
+<text class="tm" fill="#2C2C2A" x="56"  y="487" dominant-baseline="central">All TCP</text>
+<text class="tm" fill="#993C1D" x="168" y="487" dominant-baseline="central">SG-RABBIT</text>
+<rect x="40" y="498" width="290" height="22" fill="#ffffff"/>
+<text class="tm" fill="#2C2C2A" x="56"  y="509" dominant-baseline="central">All TCP</text>
+<text class="tm" fill="#534AB7" x="168" y="509" dominant-baseline="central">SG-MASTER</text>
+<rect x="40" y="520" width="290" height="22" fill="#F8FBFF"/>
+<text class="tm" fill="#2C2C2A" x="56"  y="531" dominant-baseline="central">All TCP</text>
+<text class="tm" fill="#854F0B" x="168" y="531" dominant-baseline="central">SG-SPARK</text>
+<rect x="40" y="542" width="290" height="26" fill="#ffffff"/>
+<text class="tm" fill="#2C2C2A" x="56"  y="553" dominant-baseline="central">SSH :22</text>
+<text class="tm" fill="#185FA5" x="168" y="553" dominant-baseline="central">SG-PROXY</text>
+
+<!-- SG-SPARK -->
+<rect x="350" y="414" width="290" height="220" rx="8" fill="#ffffff" stroke="#854F0B" stroke-width="1"/>
+<rect x="350" y="414" width="290" height="44" rx="8" fill="#854F0B"/>
+<rect x="350" y="436" width="290" height="22" fill="#854F0B"/>
+<text class="th" fill="#ffffff" x="366" y="432" dominant-baseline="central">SG-SPARK</text>
+<text class="tm" fill="#FAC775" x="366" y="450" dominant-baseline="central">sg-0f4565dbba3262c76</text>
+<rect x="350" y="458" width="290" height="18" fill="#F1EFE8"/>
+<text class="col" x="366" y="467" dominant-baseline="central">TIPO · PUERTO</text>
+<text class="col" x="478" y="467" dominant-baseline="central">ORIGEN</text>
+<line x1="472" y1="458" x2="472" y2="634" stroke="#D3D1C7" stroke-width="0.5"/>
+
+<rect x="350" y="476" width="290" height="22" fill="#F8FBFF"/>
+<text class="tm" fill="#2C2C2A" x="366" y="487" dominant-baseline="central">All TCP</text>
+<text class="tm" fill="#534AB7" x="478" y="487" dominant-baseline="central">SG-MASTER</text>
+<rect x="350" y="498" width="290" height="22" fill="#ffffff"/>
+<text class="tm" fill="#2C2C2A" x="366" y="509" dominant-baseline="central">All TCP</text>
+<text class="tm" fill="#0F6E56" x="478" y="509" dominant-baseline="central">SG-WORKERS</text>
+<rect x="350" y="520" width="290" height="22" fill="#F8FBFF"/>
+<text class="tm" fill="#2C2C2A" x="366" y="531" dominant-baseline="central">TCP :7077</text>
+<text class="tm" fill="#444441" x="478" y="531" dominant-baseline="central">25.0.2.0/24</text>
+<rect x="350" y="542" width="290" height="22" fill="#ffffff"/>
+<text class="tm" fill="#2C2C2A" x="366" y="553" dominant-baseline="central">TCP :8090</text>
+<text class="tm" fill="#444441" x="478" y="553" dominant-baseline="central">25.0.2.0/24</text>
+<rect x="350" y="564" width="290" height="22" fill="#F8FBFF"/>
+<text class="tm" fill="#2C2C2A" x="366" y="575" dominant-baseline="central">TCP :7000–7999</text>
+<text class="tm" fill="#444441" x="478" y="575" dominant-baseline="central">25.0.2.0/24</text>
+<rect x="350" y="586" width="290" height="28" fill="#ffffff"/>
+<text class="tm" fill="#2C2C2A" x="366" y="600" dominant-baseline="central">SSH :22</text>
+<text class="tm" fill="#185FA5" x="478" y="600" dominant-baseline="central">SG-PROXY</text>
+
+<!-- Leyenda de orígenes -->
+<line x1="40" y1="640" x2="640" y2="640" stroke="#D3D1C7" stroke-width="0.5"/>
+<text class="col" x="40"  y="652" dominant-baseline="central">ORIGEN:</text>
+<text class="tm" fill="#854F0B" x="104" y="652" dominant-baseline="central">0.0.0.0/0 = internet</text>
+<text class="tm" fill="#185FA5" x="244" y="652" dominant-baseline="central">SG-* = security group</text>
+<text class="tm" fill="#444441" x="404" y="652" dominant-baseline="central">10.x.x.x = subnet</text>
+<text class="tm" fill="#444441" x="524" y="652" dominant-baseline="central">25.x.x.x = VPC peering</text>
+</svg>
