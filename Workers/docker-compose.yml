@@ -1,33 +1,33 @@
 x-airflow-common: &airflow-common
-  image: apache/airflow:2.10.5
-  environment:
-    _PIP_ADDITIONAL_REQUIREMENTS: "apache-airflow-providers-amazon"
+  build:
+    context: ..
+    dockerfile: Dockerfile
   env_file:
     - .env
   volumes:
     - airflow_logs:/opt/airflow/logs
     - airflow_config:/opt/airflow/config
     - airflow_plugins:/opt/airflow/plugins
-    - ../pipelines/dag:/opt/airflow/dags
+    - ../pipelines/dags:/opt/airflow/dags
+    - ../pipelines:/opt/pipelines
   user: "${AIRFLOW_UID:-50000}:0"
+
 services:
   airflow-worker:
     <<: *airflow-common
     hostname: ${CELERY_HOSTNAME}
-    command: airflow celery worker --autoscale 4,1 -H ${CELERY_HOSTNAME} -q ${QUEUES}
+    command: celery worker --autoscale 4,1 -H ${CELERY_HOSTNAME} -q ${QUEUES}
     environment:
       DUMB_INIT_SETSID: "0"
       PYTHONPATH: ${PYTHONPATH}
-      _PIP_ADDITIONAL_REQUIREMENTS: "apache-airflow-providers-amazon"
     restart: unless-stopped
     healthcheck:
-      test:
-        - "CMD-SHELL"
-        - "airflow jobs check --job-type WorkerJob --hostname \"$${HOSTNAME}\""
+      test: ["CMD-SHELL", "celery --app airflow.providers.celery.executors.celery_executor.app inspect ping -d celery@${CELERY_HOSTNAME} --timeout 10 || exit 1"]
       interval: 30s
-      timeout: 10s
+      timeout: 15s
       retries: 5
-      start_period: 30s
+      start_period: 60s
+
 volumes:
   airflow_logs:
   airflow_config:

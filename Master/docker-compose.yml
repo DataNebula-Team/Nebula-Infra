@@ -1,5 +1,7 @@
 x-airflow-common: &airflow-common
-  image: apache/airflow:2.10.5
+  build:
+    context: ..
+    dockerfile: Dockerfile
   environment:
     _PIP_ADDITIONAL_REQUIREMENTS: "apache-airflow-providers-amazon"
   env_file:
@@ -8,16 +10,16 @@ x-airflow-common: &airflow-common
     - airflow_logs:/opt/airflow/logs
     - airflow_config:/opt/airflow/config
     - airflow_plugins:/opt/airflow/plugins
-    - /home/ubuntu/Nebula-Infra/pipelines/dag:/opt/airflow/dags
+    - /home/ubuntu/Nebula-Infra/pipelines/dags:/opt/airflow/dags
+    - /home/ubuntu/Nebula-Infra/pipelines:/opt/pipelines
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     postgres:
       condition: service_healthy
 
 services:
-
   postgres:
-    image: postgres:13
+    image: postgres:16
     restart: unless-stopped
     env_file:
       - .env
@@ -60,9 +62,19 @@ services:
 
   airflow-webserver:
     <<: *airflow-common
-    command: webserver
+    command: api-server
     ports:
       - "8080:8080"
+    restart: unless-stopped
+    environment:
+      PYTHONPATH: ${PYTHONPATH}
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+
+  airflow-dag-processor:
+    <<: *airflow-common
+    command: dag-processor
     restart: unless-stopped
     environment:
       PYTHONPATH: ${PYTHONPATH}
@@ -77,8 +89,8 @@ services:
     environment:
       PYTHONPATH: ${PYTHONPATH}
     depends_on:
-      airflow-init:
-        condition: service_completed_successfully
+      airflow-dag-processor:
+        condition: service_started
 
   airflow-triggerer:
     <<: *airflow-common

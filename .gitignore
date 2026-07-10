@@ -1,1 +1,42 @@
-.idea
+# Secretos
+**/.env
+!**/.env.example
+
+# Runtime Airflow
+pipelines/data/
+pipelines/logs/
+pipelines/dags/__pycache__/
+pipelines/tests/__pycache__/
+include/
+plugins/
+airflow/
+venv/
+
+# Nginx
+Proxy-Nginx/data/
+Proxy-Nginx/letsencrypt/
+
+# Kafka
+Kafka/kafka-data/
+
+# Spark
+configs/spark_jobs/
+*.jar
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Misceláneos
+backup_dags_test/
