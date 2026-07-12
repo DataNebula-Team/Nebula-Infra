@@ -1,0 +1,143 @@
+========================================
+  EVIDENCIA: SRV-KAFKA KRaft
+  Fecha: Mon Jun  1 14:16:22 UTC 2026
+  Host: ip-10-0-2-234
+  OS: Ubuntu 26.04 LTS
+========================================
+
+── 1. VERSIÓN DE DOCKER ──────────────────
+Docker version 29.5.2, build 79eb04c
+Docker Compose version v5.1.4
+
+── 2. ESTADO DEL CONTAINER ───────────────
+NAME          IMAGE                         COMMAND                  SERVICE   CREATED         STATUS                   PORTS
+kafka-kraft   confluentinc/cp-kafka:7.6.0   "/etc/confluent/dock…"   kafka     3 minutes ago   Up 3 minutes (healthy)   0.0.0.0:9092-9093->9092-9093/tcp, [::]:9092-9093->9092-9093/tcp, 0.0.0.0:9994->9994/tcp, [::]:9994->9994/tcp
+
+── 3. TOPICS CREADOS ─────────────────────
+__consumer_offsets
+fhir-events
+medicamentos
+urgencias
+vitales
+
+── 4. DETALLE DE TOPICS ──────────────────
+Topic: __consumer_offsets	TopicId: F0m6KK63TCyb0nYxVT9ZSw	PartitionCount: 50	ReplicationFactor: 1	Configs: compression.type=producer,cleanup.policy=compact,segment.bytes=104857600
+	Topic: __consumer_offsets	Partition: 0	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 1	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 2	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 3	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 4	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 5	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 6	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 7	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 8	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 9	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 10	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 11	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 12	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 13	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 14	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 15	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 16	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 17	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 18	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 19	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 20	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 21	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 22	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 23	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 24	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 25	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 26	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 27	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 28	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 29	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 30	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 31	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 32	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 33	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 34	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 35	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 36	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 37	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 38	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 39	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 40	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 41	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 42	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 43	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 44	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 45	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 46	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 47	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 48	Leader: 1	Replicas: 1	Isr: 1
+	Topic: __consumer_offsets	Partition: 49	Leader: 1	Replicas: 1	Isr: 1
+Topic: medicamentos	TopicId: vKmyF2U2QdKtOdDbLT9rJg	PartitionCount: 3	ReplicationFactor: 1	Configs: segment.bytes=1073741824,retention.ms=604800000
+	Topic: medicamentos	Partition: 0	Leader: 1	Replicas: 1	Isr: 1
+	Topic: medicamentos	Partition: 1	Leader: 1	Replicas: 1	Isr: 1
+	Topic: medicamentos	Partition: 2	Leader: 1	Replicas: 1	Isr: 1
+Topic: vitales	TopicId: M32tA3WBQEugSIqcDGMDyw	PartitionCount: 3	ReplicationFactor: 1	Configs: segment.bytes=1073741824,retention.ms=604800000
+	Topic: vitales	Partition: 0	Leader: 1	Replicas: 1	Isr: 1
+	Topic: vitales	Partition: 1	Leader: 1	Replicas: 1	Isr: 1
+	Topic: vitales	Partition: 2	Leader: 1	Replicas: 1	Isr: 1
+Topic: fhir-events	TopicId: MgjxQLd1RuWQGkMhc6myxg	PartitionCount: 6	ReplicationFactor: 1	Configs: segment.bytes=1073741824,retention.ms=2592000000
+	Topic: fhir-events	Partition: 0	Leader: 1	Replicas: 1	Isr: 1
+	Topic: fhir-events	Partition: 1	Leader: 1	Replicas: 1	Isr: 1
+	Topic: fhir-events	Partition: 2	Leader: 1	Replicas: 1	Isr: 1
+	Topic: fhir-events	Partition: 3	Leader: 1	Replicas: 1	Isr: 1
+	Topic: fhir-events	Partition: 4	Leader: 1	Replicas: 1	Isr: 1
+	Topic: fhir-events	Partition: 5	Leader: 1	Replicas: 1	Isr: 1
+Topic: urgencias	TopicId: A8zENPPKTAmxPuUyREgSkg	PartitionCount: 3	ReplicationFactor: 1	Configs: segment.bytes=1073741824,retention.ms=86400000
+	Topic: urgencias	Partition: 0	Leader: 1	Replicas: 1	Isr: 1
+	Topic: urgencias	Partition: 1	Leader: 1	Replicas: 1	Isr: 1
+	Topic: urgencias	Partition: 2	Leader: 1	Replicas: 1	Isr: 1
+
+── 5. CONSUMER GROUPS ────────────────────
+test-consumer-group
+
+── 6. PUERTOS EN ESCUCHA ─────────────────
+LISTEN 0      4096         0.0.0.0:9092      0.0.0.0:*          
+LISTEN 0      4096         0.0.0.0:9093      0.0.0.0:*          
+LISTEN 0      4096         0.0.0.0:9994      0.0.0.0:*          
+LISTEN 0      4096            [::]:9092         [::]:*          
+LISTEN 0      4096            [::]:9093         [::]:*          
+LISTEN 0      4096            [::]:9994         [::]:*          
+
+── 7. REGLAS DE FIREWALL (UFW) ───────────
+Status: active
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW       Anywhere                  
+9092/tcp                   ALLOW       Anywhere                  
+9093/tcp                   ALLOW       Anywhere                  
+9994/tcp                   ALLOW       Anywhere                  
+22/tcp (v6)                ALLOW       Anywhere (v6)             
+9092/tcp (v6)              ALLOW       Anywhere (v6)             
+9093/tcp (v6)              ALLOW       Anywhere (v6)             
+9994/tcp (v6)              ALLOW       Anywhere (v6)             
+
+
+── 8. LOGS RECIENTES DEL BROKER ──────────
+kafka-kraft  | [2026-06-01 14:12:47,088] INFO [GroupMetadataManager brokerId=1] Finished loading offsets and group metadata from __consumer_offsets-10 in 34 milliseconds for epoch 4, of which 34 milliseconds was spent in the scheduler. (kafka.coordinator.group.GroupMetadataManager)
+kafka-kraft  | [2026-06-01 14:12:47,088] INFO [GroupMetadataManager brokerId=1] Finished loading offsets and group metadata from __consumer_offsets-22 in 34 milliseconds for epoch 4, of which 34 milliseconds was spent in the scheduler. (kafka.coordinator.group.GroupMetadataManager)
+kafka-kraft  | [2026-06-01 14:12:47,088] INFO [GroupMetadataManager brokerId=1] Finished loading offsets and group metadata from __consumer_offsets-18 in 34 milliseconds for epoch 4, of which 34 milliseconds was spent in the scheduler. (kafka.coordinator.group.GroupMetadataManager)
+kafka-kraft  | [2026-06-01 14:12:47,159] INFO Loaded member MemberMetadata(memberId=kafka-python-2.2.3-59ac8700-69ae-4dfc-85da-7af425c54431, groupInstanceId=None, clientId=kafka-python-2.2.3, clientHost=/10.0.2.234, sessionTimeoutMs=10000, rebalanceTimeoutMs=300000, supportedProtocols=List(range)) in group test-consumer-group with generation 1. (kafka.coordinator.group.GroupMetadata$)
+kafka-kraft  | [2026-06-01 14:12:47,192] INFO Loaded member MemberMetadata(memberId=kafka-python-2.2.3-fe14c361-ce1d-42cc-b659-f82772a2330b, groupInstanceId=None, clientId=kafka-python-2.2.3, clientHost=/10.0.2.234, sessionTimeoutMs=10000, rebalanceTimeoutMs=300000, supportedProtocols=List(range)) in group test-consumer-group with generation 3. (kafka.coordinator.group.GroupMetadata$)
+kafka-kraft  | [2026-06-01 14:12:47,198] INFO Loaded member MemberMetadata(memberId=kafka-python-2.2.3-95291520-0ad6-47d6-a8bc-8252c810074d, groupInstanceId=None, clientId=kafka-python-2.2.3, clientHost=/10.0.2.234, sessionTimeoutMs=10000, rebalanceTimeoutMs=300000, supportedProtocols=List(range)) in group test-consumer-group with generation 5. (kafka.coordinator.group.GroupMetadata$)
+kafka-kraft  | [2026-06-01 14:12:47,207] INFO [GroupCoordinator 1]: Loading group metadata for test-consumer-group with generation 6 (kafka.coordinator.group.GroupCoordinator)
+kafka-kraft  | [2026-06-01 14:12:47,210] INFO [GroupMetadataManager brokerId=1] Finished loading offsets and group metadata from __consumer_offsets-31 in 156 milliseconds for epoch 4, of which 35 milliseconds was spent in the scheduler. (kafka.coordinator.group.GroupMetadataManager)
+kafka-kraft  | [2026-06-01 14:12:47,210] INFO [GroupMetadataManager brokerId=1] Finished loading offsets and group metadata from __consumer_offsets-27 in 155 milliseconds for epoch 4, of which 155 milliseconds was spent in the scheduler. (kafka.coordinator.group.GroupMetadataManager)
+kafka-kraft  | [2026-06-01 14:12:47,213] INFO [GroupMetadataManager brokerId=1] Finished loading offsets and group metadata from __consumer_offsets-39 in 158 milliseconds for epoch 4, of which 158 milliseconds was spent in the scheduler. (kafka.coordinator.group.GroupMetadataManager)
+kafka-kraft  | [2026-06-01 14:12:47,213] INFO [GroupMetadataManager brokerId=1] Finished loading offsets and group metadata from __consumer_offsets-6 in 158 milliseconds for epoch 4, of which 158 milliseconds was spent in the scheduler. (kafka.coordinator.group.GroupMetadataManager)
+kafka-kraft  | [2026-06-01 14:12:47,213] INFO [GroupMetadataManager brokerId=1] Finished loading offsets and group metadata from __consumer_offsets-35 in 158 milliseconds for epoch 4, of which 158 milliseconds was spent in the scheduler. (kafka.coordinator.group.GroupMetadataManager)
+kafka-kraft  | [2026-06-01 14:12:47,214] INFO [GroupMetadataManager brokerId=1] Finished loading offsets and group metadata from __consumer_offsets-2 in 158 milliseconds for epoch 4, of which 157 milliseconds was spent in the scheduler. (kafka.coordinator.group.GroupMetadataManager)
+kafka-kraft  | [2026-06-01 14:12:47,241] INFO [GroupCoordinator 1]: Dynamic Member with unknown member id joins group test-consumer-group in Empty state. Created a new member id kafka-python-2.2.3-249d86dd-818e-454b-997a-16a5a401b028 for this member and add to the group. (kafka.coordinator.group.GroupCoordinator)
+kafka-kraft  | [2026-06-01 14:12:47,265] INFO [GroupCoordinator 1]: Preparing to rebalance group test-consumer-group in state PreparingRebalance with old generation 6 (__consumer_offsets-31) (reason: Adding new member kafka-python-2.2.3-249d86dd-818e-454b-997a-16a5a401b028 with group instance id None; client reason: not provided) (kafka.coordinator.group.GroupCoordinator)
+kafka-kraft  | [2026-06-01 14:12:50,276] INFO [GroupCoordinator 1]: Stabilized group test-consumer-group generation 7 (__consumer_offsets-31) with 1 members (kafka.coordinator.group.GroupCoordinator)
+kafka-kraft  | [2026-06-01 14:12:50,287] INFO [GroupCoordinator 1]: Assignment received from leader kafka-python-2.2.3-249d86dd-818e-454b-997a-16a5a401b028 for group test-consumer-group for generation 7. The group has 1 members, 0 of which are static. (kafka.coordinator.group.GroupCoordinator)
+kafka-kraft  | [2026-06-01 14:13:27,468] INFO [GroupCoordinator 1]: Preparing to rebalance group test-consumer-group in state PreparingRebalance with old generation 7 (__consumer_offsets-31) (reason: Removing member kafka-python-2.2.3-249d86dd-818e-454b-997a-16a5a401b028 on LeaveGroup; client reason: not provided) (kafka.coordinator.group.GroupCoordinator)
+kafka-kraft  | [2026-06-01 14:13:27,469] INFO [GroupCoordinator 1]: Group test-consumer-group with generation 8 is now empty (__consumer_offsets-31) (kafka.coordinator.group.GroupCoordinator)
+kafka-kraft  | [2026-06-01 14:13:27,473] INFO [GroupCoordinator 1]: Member MemberMetadata(memberId=kafka-python-2.2.3-249d86dd-818e-454b-997a-16a5a401b028, groupInstanceId=None, clientId=kafka-python-2.2.3, clientHost=/10.0.2.234, sessionTimeoutMs=10000, rebalanceTimeoutMs=300000, supportedProtocols=List(range, roundrobin)) has left group test-consumer-group through explicit `LeaveGroup`; client reason: not provided (kafka.coordinator.group.GroupCoordinator)
+
+✅ Evidencia generada exitosamente
