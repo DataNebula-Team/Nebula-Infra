@@ -1,0 +1,53 @@
+services:
+  kafka:
+    image: confluentinc/cp-kafka:7.6.0
+    container_name: kafka-kraft
+    restart: unless-stopped
+
+    environment:
+      # === MODO KRaft (sin Zookeeper) ===
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: 'broker,controller'
+      KAFKA_CONTROLLER_QUORUM_VOTERS: '1@kafka:9093'
+
+      # === LISTENERS (puntos de conexión) ===
+      # PLAINTEXT     → clientes internos (microservicios)
+      # CONTROLLER    → coordinación interna KRaft
+      # EXTERNAL      → opcional, para acceso desde fuera del container
+      KAFKA_LISTENERS: 'PLAINTEXT://0.0.0.0:29092,CONTROLLER://0.0.0.0:9093,EXTERNAL://0.0.0.0:9092'
+      KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://kafka:29092,EXTERNAL://10.0.2.234:9092'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT,EXTERNAL:PLAINTEXT'
+      KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+      KAFKA_INTER_BROKER_LISTENER_NAME: 'PLAINTEXT'
+
+      # === MÉTRICAS JMX en puerto 9994 ===
+      KAFKA_JMX_PORT: 9994
+      KAFKA_JMX_HOSTNAME: localhost
+      # Limitar memoria de la JVM (ajusta según tu RAM disponible)
+      KAFKA_HEAP_OPTS: "-Xmx512m -Xms512m"
+      # === CONFIGURACIÓN DEL CLUSTER ===
+      CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'  # ID único (base64 de 16 bytes)
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_LOG_DIRS: '/var/lib/kafka/data'
+
+      # === RETENCIÓN DE MENSAJES ===
+      KAFKA_LOG_RETENTION_HOURS: 168        # 7 días
+      KAFKA_LOG_SEGMENT_BYTES: 1073741824   # 1 GB por segmento
+
+    ports:
+      - "9092:9092"   # Kafka Plaintext
+      - "9093:9093"   # Kafka Controller
+      - "9994:9994"   # JMX Metrics
+
+    volumes:
+      - ./kafka-data:/var/lib/kafka/data
+
+    healthcheck:
+      test: ["CMD", "kafka-broker-api-versions", "--bootstrap-server", "localhost:9092"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+
